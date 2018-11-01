@@ -1,45 +1,49 @@
 const express = require('express');
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = require('http').createServer(app)
 const bodyParser = require('body-parser');
-
-app.use(bodyParser.json());
-app.use( express.static( `${__dirname}/src/index.js` ) );
-
+const io = require('socket.io')(server)
 
 var host = '';
-var room = '';
+var room = 'placeholder';
 var userList = [];
 
 
-io.sockets.on('connection', (socket) => {
-
-  socket.on('join', (join) => {
-    // Host, 'join.host', enters room, 'join.room'
+io.sockets.on('connection', (socket) =>{
+  console.log('the room is "', room, '"')
+  console.log(`user connected, ${socket['id']}`);
+  socket.on('test', message => {
+    console.log(`${message.message}`);
+  })
+  socket.on('join host', (join) => {
+    console.log('host', join.host, 'enters room', join.room);
     if (join.host) {
       host = join.host;
       room = join.room;
-      io.in(join.room).emit("host joined", {
-        room: join.room, 
-        host: join.host});
-        console.log(`${join.host} started a game in room ${join.room}`)
-    // User (guest), 'join.user', enters room - check room name
-    } else if (join.user && room === join.room) {
-      userList.push(join.user);
-      io.in(joined.room).emit('user joined', joined.userList);
-
+      // console.log('the room is "', room, '"')
     }
-    // userList.push(join['id']);
-    // console.log(userList);
-    //   socket.join(joined.room)
-    //   io.in(join.room).emit("joined", {room: joined.room, id: joined.id, username: joined.username, userList: joined.userList})
-    //   console.log('after join',joined.userList);
-    //   io.to(socket.id).emit('user_id', joined.id);
-    //   io.in(joined.room).emit('userlist', joined.userList);
+  });
+  socket.on('join user', (join) => {
+    console.log('user', join.user, 'enters room', join.room);
+    if (join.user) {
+      console.log(userList, typeof userList);
+      userList.push(join.user);
+      console.log(userList, typeof userList);
+    }
+    // console.log('putting in room, sending room and userlist')
+    socket.join(join.room);
+    io.in(join.room).emit("joined", {room: room, userList: userList})
+    // console.log('put in room')
+
+    // socket.emit('joined', (joined) => {
+    //   this.state.userList = join.userList;
+    //   console.log(`In room, ${this.state.room}, the user list is ${this.state.userList}`)
+    // })
+  });
+  socket.on('disconnect', () => {
+    console.log(`user disconnected, ${socket['id']}`)
   })
 })
 
-
-const port = 4000;
-app.listen(port, () => console.log( `All systems go, approaching at vector ${port}`));
+const PORT = 4000;
+server.listen(PORT, ()=> console.log(`Server listening on port PORT`));

@@ -3,7 +3,7 @@ host: '',             // Host - only assigned from laptop view
 room: '',             // Typed by host
 rndLimit: 3,          // Round, set by host in lobby
 rndCurrent: null,     // Round, set during game
-user: {},             // User { id:#, avName:'', avPhoto:'url' }
+user: '',             // User { id:#, avName:'', avPhoto:'url' }
 userList: [],         // List of playing users 
 userScoreList: [],    // Scores - only party mode
 newsAllList: [],      // Lists available to play
