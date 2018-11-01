@@ -95,7 +95,7 @@ export function updateNewsAllList ( newsAllList ){
 export function updateNewsPlayingList ( newsPlayingList ){
   return {
       type: UPDATE_NEWS_PLAYING_LIST,
-      payload: news_Playing_List
+      payload: newsPlayingList
   }
 }
 

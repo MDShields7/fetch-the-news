@@ -1,7 +1,39 @@
 .App {
   text-align: center;
 }
+@media (min-width: 801px) {
+  .Laptop {
+    background:lightcoral;
+  }
+  .Phone {
+    display:none;
+  }
+}
+@media (max-width: 800px) {
+  .Laptop {
+    display:none;
+  }
+  .Phone {
+    background: lightblue;
+  }
+}
 
+
+/* @media (min-width: 991px) and (max-width:1099px)
+@media (max-width: 990px) {
+    .box {
+        background: transparent;
+        height: 0;
+        width: 0;
+        border-top: solid 100px green;
+        border-left: transparent 100px solid;
+        border-right: transparent 100px solid;
+        border-bottom: red 100px solid;
+    }
+} */
+
+
+/* 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -29,4 +61,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
