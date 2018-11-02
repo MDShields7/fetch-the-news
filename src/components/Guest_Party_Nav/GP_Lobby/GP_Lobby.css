@@ -1,0 +1,30 @@
+.mapDogs {
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0vw 0vw auto;
+}
+.dogsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40vw;
+  height: 40vw;
+  font-size: 8vw;
+  font-weight: bold;
+  margin: 15px auto;
+
+}
+img {
+  width:36vw;
+  height:36vw;
+  border-radius: 200px;
+  object-fit: cover;
+}
+.dogsCard > button {
+  height: 50px;
+  
+  margin: 2vw;
+  border-radius:10px;
+  font-size: 10px;;
+}

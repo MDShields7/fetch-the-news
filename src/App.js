@@ -59,7 +59,7 @@ class App extends Component {
     return (
       <div className="App">
       <h1>App</h1>
-      <div>`Host is ${this.props.host}`</div> 
+      {/* <div>`Host is ${this.props.host}`</div>  */}
         <div>`Room is ${this.props.room}`</div>
         <button onClick={this.stateBtn}>Check App.js State</button>
         <div className='Laptop'>{hostView()}</div>
